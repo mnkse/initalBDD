@@ -2,8 +2,7 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -12,30 +11,25 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
     </properties>
 
     <dependencies>
 
-        <!-- Selenium -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.21.0</version>
         </dependency>
 
-        <!-- Cucumber -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>7.18.0</version>
         </dependency>
 
-        <!-- Cucumber JUnit -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
@@ -43,7 +37,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JUnit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -51,35 +44,30 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- WebDriverManager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.9.3</version>
         </dependency>
 
-        <!-- Rest Assured -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>5.5.0</version>
         </dependency>
 
-        <!-- Logback -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.5.6</version>
         </dependency>
 
-        <!-- Allure Cucumber -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber7-jvm</artifactId>
             <version>2.29.1</version>
         </dependency>
 
-        <!-- Allure JUnit4 -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
@@ -89,38 +77,26 @@
     </dependencies>
 
     <build>
-
         <plugins>
 
             <plugin>
-
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
 
                 <configuration>
-
                     <includes>
-
                         <include>**/*Test.java</include>
                         <include>**/TestRunner.java</include>
-
                     </includes>
 
                     <systemPropertyVariables>
-
-                        <allure.results.directory>
-                            target/allure-results
-                        </allure.results.directory>
-
+                        <allure.results.directory>target/allure-results</allure.results.directory>
                     </systemPropertyVariables>
-
                 </configuration>
-
             </plugin>
 
         </plugins>
-
     </build>
 
 </project>
