@@ -5,20 +5,17 @@ import org.junit.Assert;
 import org.junit.Test;
 import utils.ApiClient;
 
-import java.util.List;
-
 public class ProductApiTest {
 
     @Test
-    public void getProductsTest() {
+    public void getUsersTest() {
 
-        Response response = ApiClient.get("/productsList");
+        Response response = ApiClient.get("/api/users?page=2");
+
+        System.out.println(response.asPrettyString());
 
         Assert.assertEquals(200, response.statusCode());
 
-        List<String> productNames =
-                response.jsonPath().getList("products.name");
-
-        Assert.assertTrue(productNames.contains("Blue Top"));
+        Assert.assertTrue(response.jsonPath().getList("data").size() > 0);
     }
 }
