@@ -3,15 +3,20 @@ name: UI and API Tests
 on:
   push:
     branches: [ main ]
+
   pull_request:
     branches: [ main ]
+
   workflow_dispatch:
 
 jobs:
+
   test:
+
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -34,12 +39,20 @@ jobs:
       - name: Run UI and API Tests
         run: mvn clean test -Dbrowser=chrome -Dheadless=true -DapiKey=${{ secrets.REQRES_API_KEY }}
 
+      - name: Generate Allure Report
+        if: always()
+        run: |
+          npm install -g allure-commandline
+          allure generate target/allure-results -o target/allure-report --clean
+
       - name: Upload Allure Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
-          path: target/allure-results
+          path: |
+            target/allure-results
+            target/allure-report
 
       - name: Upload Cucumber Reports
         if: always()
