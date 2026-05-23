@@ -86,8 +86,7 @@
 
                 <configuration>
                     <includes>
-                        <include>**/*Test.java</include>
-                        <include>**/TestRunner.java</include>
+                        <include>**/${test.pattern}.java</include>
                     </includes>
 
                     <systemPropertyVariables>
@@ -98,5 +97,28 @@
 
         </plugins>
     </build>
+    <profiles>
 
+        <profile>
+            <id>api</id>
+            <properties>
+                <test.pattern>*ApiTest</test.pattern>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>ui</id>
+            <properties>
+                <test.pattern>TestRunner</test.pattern>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>all</id>
+            <properties>
+                <test.pattern>*Test,TestRunner</test.pattern>
+            </properties>
+        </profile>
+
+    </profiles>
 </project>
