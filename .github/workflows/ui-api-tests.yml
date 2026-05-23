@@ -59,11 +59,11 @@ jobs:
 
       - name: Run UI tests
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.testType == 'ui' }}
-        run: mvn clean test -Dtest=TestRunner -Dbrowser=chrome -Dheadless=true -DapiKey=${{ secrets.REQRES_API_KEY }}
+        run: mvn clean test -Pui -Dbrowser=chrome -Dheadless=true -DapiKey=${{ secrets.REQRES_API_KEY }}
 
       - name: Run API tests
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.testType == 'api' }}
-        run: mvn clean test -Dtest=*ApiTest -DapiKey=${{ secrets.REQRES_API_KEY }}
+        run: mvn clean test -Papi -DapiKey=${{ secrets.REQRES_API_KEY }}
 
       - name: Run smoke tests
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.testType == 'smoke' }}
