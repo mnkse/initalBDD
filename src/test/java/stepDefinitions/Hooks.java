@@ -5,9 +5,8 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import utils.AiFailureAnalyzer;
 import utils.DriverFactory;
-import io.qameta.allure.Allure;
-import java.io.ByteArrayInputStream;
 
 public class Hooks {
 
@@ -28,9 +27,16 @@ public class Hooks {
                         ((TakesScreenshot) DriverFactory.getDriver())
                                 .getScreenshotAs(OutputType.BYTES);
 
-                scenario.attach(screenshot,
+                scenario.attach(
+                        screenshot,
                         "image/png",
-                        scenario.getName());
+                        scenario.getName()
+                );
+
+                AiFailureAnalyzer.generateFailureSummary(
+                        scenario,
+                        new RuntimeException("Scenario failed")
+                );
             }
 
         } catch (Exception e) {
