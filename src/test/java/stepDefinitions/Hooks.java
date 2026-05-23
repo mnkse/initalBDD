@@ -5,8 +5,8 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import utils.AiFailureAnalyzer;
 import utils.DriverFactory;
+import utils.OpenAiFailureAnalyzer;
 
 public class Hooks {
 
@@ -33,15 +33,17 @@ public class Hooks {
                         scenario.getName()
                 );
 
-                AiFailureAnalyzer.generateFailureSummary(
+                OpenAiFailureAnalyzer.analyzeFailure(
                         scenario,
-                        new RuntimeException("Scenario failed")
+                        "Scenario failed during execution"
                 );
             }
 
         } catch (Exception e) {
 
-            System.out.println("Screenshot could not be taken.");
+            System.out.println(
+                    "Screenshot or AI analysis could not be completed."
+            );
 
         } finally {
 
