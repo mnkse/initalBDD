@@ -86,7 +86,8 @@
 
                 <configuration>
                     <includes>
-                        <include>**/${test.pattern}.java</include>
+                        <include>**/*Test.java</include>
+                        <include>**/TestRunner.java</include>
                     </includes>
 
                     <systemPropertyVariables>
@@ -97,6 +98,7 @@
 
         </plugins>
     </build>
+
     <profiles>
 
         <profile>
@@ -121,4 +123,5 @@
         </profile>
 
     </profiles>
+
 </project>
